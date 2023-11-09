@@ -14,20 +14,22 @@ public class Producto implements Serializable{
     @Column(name = "id_producto")
     //La estrategia para asignar los valores va a ser tomado identico de la entidad
     private Long idProducto;
+    //private Long idCategoria;
     private String descripcion;
+    private String detalle;
+    private Double precio;
+    private int existencias;
     private String rutaImagen;
     private boolean activo;
     
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    Categoria categoria;
+
     public Producto() {
     }
     
-    
-    public Producto(String descripcion, boolean activo) {
-        this.descripcion = descripcion;
-        this.activo = activo;
-    }
-    
-    
+   
     
     
     

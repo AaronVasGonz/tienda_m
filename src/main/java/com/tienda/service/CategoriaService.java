@@ -17,6 +17,8 @@ public interface CategoriaService {
     
     public List<Categoria> getCategorias(boolean Activo);
     
+
+    
     // Se obtiene un Categoria, a partir del id de un categoria
     public Categoria getCategoria(Categoria categoria);
     
