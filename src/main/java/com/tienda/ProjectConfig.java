@@ -71,7 +71,7 @@ public class ProjectConfig implements WebMvcConfigurer{
                         "/categoria/nuevo","/categoria/guardar",
                         "/categoria/modificar/**","/categoria/eliminar/**",
                         "/usuario/nuevo","/usuario/guardar",
-                        "/usuario/modificar/**","/usuario/eliminar/**",
+                        "/usuario/modificar/**","/usuario/eliminar/**", 
                         "/reportes/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
@@ -90,34 +90,34 @@ public class ProjectConfig implements WebMvcConfigurer{
 
 /* El siguiente método se utiliza para completar la clase no es 
     realmente funcional, la próxima semana se reemplaza con usuarios de BD */    
-    @Bean
-    public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                .username("juan")
-                .password("{noop}123")
-                .roles("USER", "VENDEDOR", "ADMIN")
-                .build();
-        UserDetails sales = User.builder()
-                .username("rebeca")
-                .password("{noop}456")
-                .roles("USER", "VENDEDOR")
-                .build();
-        UserDetails user = User.builder()
-                .username("pedro")
-                .password("{noop}789")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user, sales, admin);
-    }
-    
-//    @Autowired
-//    private UserDetailsService userDetailService;
-//    
-//    @Autowired
-//    public void configurerGlobal(AuthenticationManagerBuilder build)
-//            throws Exception{
-//        build.userDetailsService(userDetailService).passwordEncoder(
-//        new BCryptPasswordEncoder()
-//        );
+//    @Bean
+//    public UserDetailsService users() {
+//        UserDetails admin = User.builder()
+//                .username("juan")
+//                .password("{noop}123")
+//                .roles("USER", "VENDEDOR", "ADMIN")
+//                .build();
+//        UserDetails sales = User.builder()
+//                .username("rebeca")
+//                .password("{noop}456")
+//                .roles("USER", "VENDEDOR")
+//                .build();
+//        UserDetails user = User.builder()
+//                .username("pedro")
+//                .password("{noop}789")
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(user, sales, admin);
 //    }
+    
+    @Autowired
+    private UserDetailsService userDetailService;
+    
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder build)
+            throws Exception{
+        build.userDetailsService(userDetailService).passwordEncoder(
+        new BCryptPasswordEncoder()
+        );
+    }
 }
